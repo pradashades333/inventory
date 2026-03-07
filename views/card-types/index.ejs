@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card Types</title>
+</head>
+<body>
+    <div>
+        <% cardTypes.forEach(cardType => { %>
+            <p><%= cardType.name %></p>
+        <% }) %>
+
+        <a href="/card-types/new">Add new card type</a>
+    </div>
+</body>
+</html>
