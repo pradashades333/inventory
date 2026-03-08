@@ -8,7 +8,10 @@
 <body>
     <div>
         <% cards.forEach(card => { %>
-            <p> <% card.name %> </p>
+            <p> <%= card.name %> </p>
+            <p> <%= card.price %> </p>
+            <p> <%= card.rarity %> </p>
+            <p> <%= card.stock %> </p>
         <% }) %>
         
         <a href = "/cards/new"> Add new card </a>
