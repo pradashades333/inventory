@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card Type Form</title>
+</head>
+<body>
+    <div>
+        <form action="<%= typeof cardType !== 'undefined' ? '/card-types/' + cardType.id + '/edit' : '/card-types' %>" method="POST">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" value="<%= typeof cardType !== 'undefined' ? cardType.name : '' %>">
+            
+            <label for="description">Description:</label>
+            <textarea id="description" name="description"><%= typeof cardType !== 'undefined' ? cardType.description : '' %></textarea>
+            
+            <input type="submit" value="<%= typeof cardType !== 'undefined' ? 'Update' : 'Add' %>">
+        </form>
+    </div>
+</body>
+</html>

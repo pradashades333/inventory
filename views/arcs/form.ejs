@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add arc</title>
+    <title>Arc Form</title>
 </head>
 <body>
     <div>
-        <form action="/arcs" method="POST">
+        <form action="<%= typeof arc !== 'undefined' ? '/arcs/' + arc.id + '/edit' : '/arcs' %>" method="POST">
             <label for="name">Arc name:</label>
-            <input type="text" id="name" name="name">
+            <input type="text" id="name" name="name" value="<%= typeof arc !== 'undefined' ? arc.name : '' %>">
             
-            <label for="description">Arc description:</label>
-            <textarea id="description" name="description"></textarea>
+            <label for="description">Arc Description:</label>
+            <textarea id="description" name="description"><%= typeof arc !== 'undefined' ? arc.description : '' %></textarea>
             
-            <input type="submit" value="Submit">
+            <input type="submit" value="<%= typeof arc !== 'undefined' ? 'Update Arc' : 'Add Arc' %>">
         </form>
     </div>
 </body>
