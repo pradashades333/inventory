@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cards</title>
+</head>
+<body>
+    <div>
+        <h1><%= card.name %></h1>
+        <p><%= card.card_number %></p>
+        <p><%= card.price %></p>
+        <p><%= card.rarity %></p>
+        <p><%= card.stock %></p>
+        <p><%= card.description %></p>
+        <img src="<%= card.image_url %>">
+        <a href = "/cards"> Back to cards</a>
+    </div>
+</body>
+</html>
