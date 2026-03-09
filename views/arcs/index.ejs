@@ -8,7 +8,12 @@
 <body>
     <div>
         <% arcs.forEach(arc => { %>
-            <p><%= arc.name %></p> 
+            <p><%= arc.name %></p>
+            <p><%= arc.description %></p>
+            <form action="/arcs/<%= arc.id %>/delete" method="POST">
+                <button type="submit">Delete</button>
+            </form>
+            <a href="/arcs/<%= arc.id %>/edit">Edit</a>
         <% }) %>
 
         <a href="/arcs/new">Add new arc</a>

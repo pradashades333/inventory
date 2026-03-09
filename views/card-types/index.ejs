@@ -9,6 +9,10 @@
     <div>
         <% cardTypes.forEach(cardType => { %>
             <p><%= cardType.name %></p>
+            <form action="/card-types/<%= cardType.id %>/delete" method="POST">
+                <button type="submit">Delete</button>
+            </form>
+            <a href="/card-types/<%= cardType.id %>/edit">Edit</a>
         <% }) %>
 
         <a href="/card-types/new">Add new card type</a>

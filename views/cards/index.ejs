@@ -12,8 +12,12 @@
             <p> <%= card.price %> </p>
             <p> <%= card.rarity %> </p>
             <p> <%= card.stock %> </p>
+            <form action="/cards/<%= card.id %>/delete" method="POST">
+                <button type="submit">Delete</button>
+            </form>
+            <a href="/cards/<%= card.id %>/edit">Edit</a>
         <% }) %>
-        
+
         <a href = "/cards/new"> Add new card </a>
     </div>
 </body>
