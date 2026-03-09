@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card Form</title>
+</head>
+<body>
+    <div>
+        <form action="<%= typeof card !== 'undefined' ? '/cards/' + card.id + '/edit' : '/cards' %>" method="POST">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" value="<%= typeof card !== 'undefined' ? card.name : '' %>">
+
+            <label for="card_number">Card Number:</label>
+            <input type="text" id="card_number" name="card_number" value="<%= typeof card !== 'undefined' ? card.card_number : '' %>">
+
+            <label for="description">Description:</label>
+            <textarea id="description" name="description"><%= typeof card !== 'undefined' ? card.description : '' %></textarea>
+
+            <label for="price">Price:</label>
+            <input type="number" step="0.01" id="price" name="price" value="<%= typeof card !== 'undefined' ? card.price : '' %>">
+
+            <label for="stock">Stock:</label>
+            <input type="number" id="stock" name="stock" value="<%= typeof card !== 'undefined' ? card.stock : '' %>">
+
+            <label for="rarity">Rarity:</label>
+            <select id="rarity" name="rarity">
+                <option value="Common" <%= typeof card !== 'undefined' && card.rarity === 'Common' ? 'selected' : '' %>>Common</option>
+                <option value="Uncommon" <%= typeof card !== 'undefined' && card.rarity === 'Uncommon' ? 'selected' : '' %>>Uncommon</option>
+                <option value="Rare" <%= typeof card !== 'undefined' && card.rarity === 'Rare' ? 'selected' : '' %>>Rare</option>
+                <option value="Super Rare" <%= typeof card !== 'undefined' && card.rarity === 'Super Rare' ? 'selected' : '' %>>Super Rare</option>
+                <option value="Secret Rare" <%= typeof card !== 'undefined' && card.rarity === 'Secret Rare' ? 'selected' : '' %>>Secret Rare</option>
+            </select>
+
+            <label for="image_url">Image URL:</label>
+            <input type="text" id="image_url" name="image_url" value="<%= typeof card !== 'undefined' ? card.image_url : '' %>">
+
+            <label for="arc_id">Arc ID:</label>
+            <input type="number" id="arc_id" name="arc_id" value="<%= typeof card !== 'undefined' ? card.arc_id : '' %>">
+
+            <label for="card_type_id">Card Type ID:</label>
+            <input type="number" id="card_type_id" name="card_type_id" value="<%= typeof card !== 'undefined' ? card.card_type_id : '' %>">
+
+            <input type="submit" value="<%= typeof card !== 'undefined' ? 'Update Card' : 'Add Card' %>">
+        </form>
+    </div>
+</body>
+</html>
