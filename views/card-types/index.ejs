@@ -4,18 +4,62 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Card Types</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .card-type-item {
+            background-color: white;
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+        }
+
+        .card-type-item p {
+            margin: 5px 0;
+        }
+
+        button {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        a {
+            color: blue;
+            margin-left: 10px;
+        }
+
+        .add-link {
+            display: block;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
+    <h1>Card Types</h1>
     <div>
         <% cardTypes.forEach(cardType => { %>
-            <p><%= cardType.name %></p>
-            <form action="/card-types/<%= cardType.id %>/delete" method="POST">
-                <button type="submit">Delete</button>
-            </form>
-            <a href="/card-types/<%= cardType.id %>/edit">Edit</a>
+            <div class="card-type-item">
+                <p><strong><%= cardType.name %></strong></p>
+                <form action="/card-types/<%= cardType.id %>/delete" method="POST" style="display:inline;">
+                    <button type="submit">Delete</button>
+                </form>
+                <a href="/card-types/<%= cardType.id %>/edit">Edit</a>
+            </div>
         <% }) %>
 
-        <a href="/card-types/new">Add new card type</a>
+        <a href="/card-types/new" class="add-link">+ Add new card type</a>
     </div>
 </body>
 </html>
