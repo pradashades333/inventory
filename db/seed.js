@@ -29,4 +29,4 @@ async function seed() {
   await pool.end();
 }
 
-seed().catch(consol
+seed().catch(console.error);
