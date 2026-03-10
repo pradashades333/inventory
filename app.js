@@ -9,6 +9,8 @@ const arcsRouter = require("./routes/arcs");
 const cardTypesRouter = require("./routes/cardTypes");
 const cardsRouter = require("./routes/cards");
 
+app.get("/", (_req, res) => res.render("home"));
+
 app.use("/arcs", arcsRouter);
 app.use("/card-types", cardTypesRouter);
 app.use("/cards", cardsRouter);
