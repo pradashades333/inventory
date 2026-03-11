@@ -32,7 +32,6 @@ async function seed() {
   const wano = getId(arcs, 'Wano');
   const marineford = getId(arcs, 'Marineford');
   const eastBlue = getId(arcs, 'East Blue');
-  const alabasta = getId(arcs, 'Alabasta');
   const enies = getId(arcs, 'Enies Lobby');
   const dressrosa = getId(arcs, 'Dressrosa');
   const wci = getId(arcs, 'Whole Cake Island');
@@ -43,21 +42,25 @@ async function seed() {
   const event = getId(cardTypes, 'Event');
   const stage = getId(cardTypes, 'Stage');
 
-  await pool.query(`
-    INSERT INTO card (name, card_number, description, price, stock, rarity, arc_id, card_type_id) VALUES
-    ('Monkey D. Luffy', 'OP01-001', 'Captain of the Straw Hat Pirates', 25.99, 10, 'Secret Rare', $1, $2),
-    ('Roronoa Zoro', 'OP01-002', 'Swordsman of the Straw Hat Pirates', 12.99, 15, 'Super Rare', $3, $4),
-    ('Portgas D. Ace', 'OP02-001', 'Second division commander of the Whitebeard Pirates', 19.99, 8, 'Super Rare', $5, $4),
-    ('Whitebeard', 'OP02-002', 'The strongest man in the world', 29.99, 5, 'Secret Rare', $5, $2),
-    ('Nico Robin', 'OP03-001', 'Archaeologist of the Straw Hat Pirates', 15.99, 12, 'Super Rare', $6, $4),
-    ('Donquixote Doflamingo', 'OP04-001', 'Former Warlord and king of Dressrosa', 18.99, 7, 'Super Rare', $7, $2),
-    ('Kaido', 'OP05-001', 'King of the Beasts and strongest creature', 39.99, 4, 'Secret Rare', $1, $2),
-    ('Gear 5 Luffy', 'OP05-002', 'Luffys awakened devil fruit form', 49.99, 3, 'Secret Rare', $1, $2),
-    ('Big Mom', 'OP06-001', 'Captain of the Big Mom Pirates', 34.99, 6, 'Secret Rare', $8, $2),
-    ('Vegapunk', 'OP07-001', 'The worlds greatest scientist', 22.99, 9, 'Super Rare', $9, $4),
-    ('Gum Gum Finale', 'OP05-010', 'Luffys finishing move', 8.99, 20, 'Rare', $1, $5),
-    ('Wano Country', 'OP05-020', 'The land of samurai and shogun', 6.99, 25, 'Uncommon', $1, $6)
-  `, [wano, leader, eastBlue, character, marineford, enies, dressrosa, wci, egghead, event, stage]);
+  for (const [name, card_number, description, price, stock, rarity, arc_id, card_type_id] of [
+    ['Monkey D. Luffy', 'OP01-001', 'Captain of the Straw Hat Pirates', 25.99, 10, 'Secret Rare', wano, leader],
+    ['Roronoa Zoro', 'OP01-002', 'Swordsman of the Straw Hat Pirates', 12.99, 15, 'Super Rare', eastBlue, character],
+    ['Portgas D. Ace', 'OP02-001', 'Second division commander of the Whitebeard Pirates', 19.99, 8, 'Super Rare', marineford, character],
+    ['Whitebeard', 'OP02-002', 'The strongest man in the world', 29.99, 5, 'Secret Rare', marineford, leader],
+    ['Nico Robin', 'OP03-001', 'Archaeologist of the Straw Hat Pirates', 15.99, 12, 'Super Rare', enies, character],
+    ['Donquixote Doflamingo', 'OP04-001', 'Former Warlord and king of Dressrosa', 18.99, 7, 'Super Rare', dressrosa, leader],
+    ['Kaido', 'OP05-001', 'King of the Beasts and strongest creature', 39.99, 4, 'Secret Rare', wano, leader],
+    ['Gear 5 Luffy', 'OP05-002', 'Luffys awakened devil fruit form', 49.99, 3, 'Secret Rare', wano, leader],
+    ['Big Mom', 'OP06-001', 'Captain of the Big Mom Pirates', 34.99, 6, 'Secret Rare', wci, leader],
+    ['Vegapunk', 'OP07-001', 'The worlds greatest scientist', 22.99, 9, 'Super Rare', egghead, character],
+    ['Gum Gum Finale', 'OP05-010', 'Luffys finishing move', 8.99, 20, 'Rare', wano, event],
+    ['Wano Country', 'OP05-020', 'The land of samurai and shogun', 6.99, 25, 'Uncommon', wano, stage],
+  ]) {
+    await pool.query(
+      `INSERT INTO card (name, card_number, description, price, stock, rarity, arc_id, card_type_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`,
+      [name, card_number, description, price, stock, rarity, arc_id, card_type_id]
+    );
+  }
 
   console.log("Seeded!");
   await pool.end();
