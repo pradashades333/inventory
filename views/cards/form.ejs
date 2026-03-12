@@ -4,43 +4,151 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Card Form</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: #1a1a2e;
+            min-height: 100vh;
+            padding: 40px 20px;
+            color: #f5e6c8;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            margin-bottom: 28px;
+            letter-spacing: 0.04em;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            max-width: 420px;
+        }
+
+        label {
+            font-size: 0.85rem;
+            opacity: 0.7;
+            margin-bottom: 4px;
+            display: block;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        textarea,
+        select {
+            width: 100%;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(245, 230, 200, 0.2);
+            border-radius: 5px;
+            color: #f5e6c8;
+            padding: 10px 12px;
+            font-size: 0.95rem;
+            font-family: inherit;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        input[type="text"]:focus,
+        input[type="number"]:focus,
+        textarea:focus,
+        select:focus {
+            border-color: rgba(245, 230, 200, 0.6);
+        }
+
+        select option {
+            background: #1a1a2e;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 90px;
+        }
+
+        input[type="submit"] {
+            align-self: flex-start;
+            background: rgba(245, 230, 200, 0.1);
+            border: 1px solid rgba(245, 230, 200, 0.3);
+            color: #f5e6c8;
+            padding: 10px 24px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-family: inherit;
+            transition: background 0.2s, border-color 0.2s;
+        }
+
+        input[type="submit"]:hover {
+            background: rgba(245, 230, 200, 0.18);
+            border-color: rgba(245, 230, 200, 0.6);
+        }
+
+        a {
+            color: #f5e6c8;
+            text-decoration: none;
+            font-size: 0.85rem;
+            opacity: 0.55;
+            transition: opacity 0.2s;
+        }
+
+        a:hover {
+            opacity: 1;
+        }
+    </style>
 </head>
 <body>
-    <div>
+    <a href="/cards">← Back to cards</a>
+    <div style="margin-top: 28px;">
+        <h1><%= typeof card !== 'undefined' ? 'Edit Card' : 'New Card' %></h1>
         <form action="<%= typeof card !== 'undefined' ? '/cards/' + card.id + '/edit' : '/cards' %>" method="POST">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" value="<%= typeof card !== 'undefined' ? card.name : '' %>">
-
-            <label for="card_number">Card Number:</label>
-            <input type="text" id="card_number" name="card_number" value="<%= typeof card !== 'undefined' ? card.card_number : '' %>">
-
-            <label for="description">Description:</label>
-            <textarea id="description" name="description"><%= typeof card !== 'undefined' ? card.description : '' %></textarea>
-
-            <label for="price">Price:</label>
-            <input type="number" step="0.01" id="price" name="price" value="<%= typeof card !== 'undefined' ? card.price : '' %>">
-
-            <label for="stock">Stock:</label>
-            <input type="number" id="stock" name="stock" value="<%= typeof card !== 'undefined' ? card.stock : '' %>">
-
-            <label for="rarity">Rarity:</label>
-            <select id="rarity" name="rarity">
-                <option value="Common" <%= typeof card !== 'undefined' && card.rarity === 'Common' ? 'selected' : '' %>>Common</option>
-                <option value="Uncommon" <%= typeof card !== 'undefined' && card.rarity === 'Uncommon' ? 'selected' : '' %>>Uncommon</option>
-                <option value="Rare" <%= typeof card !== 'undefined' && card.rarity === 'Rare' ? 'selected' : '' %>>Rare</option>
-                <option value="Super Rare" <%= typeof card !== 'undefined' && card.rarity === 'Super Rare' ? 'selected' : '' %>>Super Rare</option>
-                <option value="Secret Rare" <%= typeof card !== 'undefined' && card.rarity === 'Secret Rare' ? 'selected' : '' %>>Secret Rare</option>
-            </select>
-
-            <label for="image_url">Image URL:</label>
-            <input type="text" id="image_url" name="image_url" value="<%= typeof card !== 'undefined' ? card.image_url : '' %>">
-
-            <label for="arc_id">Arc ID:</label>
-            <input type="number" id="arc_id" name="arc_id" value="<%= typeof card !== 'undefined' ? card.arc_id : '' %>">
-
-            <label for="card_type_id">Card Type ID:</label>
-            <input type="number" id="card_type_id" name="card_type_id" value="<%= typeof card !== 'undefined' ? card.card_type_id : '' %>">
-
+            <div>
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" value="<%= typeof card !== 'undefined' ? card.name : '' %>">
+            </div>
+            <div>
+                <label for="card_number">Card Number</label>
+                <input type="text" id="card_number" name="card_number" value="<%= typeof card !== 'undefined' ? card.card_number : '' %>">
+            </div>
+            <div>
+                <label for="description">Description</label>
+                <textarea id="description" name="description"><%= typeof card !== 'undefined' ? card.description : '' %></textarea>
+            </div>
+            <div>
+                <label for="price">Price</label>
+                <input type="number" step="0.01" id="price" name="price" value="<%= typeof card !== 'undefined' ? card.price : '' %>">
+            </div>
+            <div>
+                <label for="stock">Stock</label>
+                <input type="number" id="stock" name="stock" value="<%= typeof card !== 'undefined' ? card.stock : '' %>">
+            </div>
+            <div>
+                <label for="rarity">Rarity</label>
+                <select id="rarity" name="rarity">
+                    <option value="Common" <%= typeof card !== 'undefined' && card.rarity === 'Common' ? 'selected' : '' %>>Common</option>
+                    <option value="Uncommon" <%= typeof card !== 'undefined' && card.rarity === 'Uncommon' ? 'selected' : '' %>>Uncommon</option>
+                    <option value="Rare" <%= typeof card !== 'undefined' && card.rarity === 'Rare' ? 'selected' : '' %>>Rare</option>
+                    <option value="Super Rare" <%= typeof card !== 'undefined' && card.rarity === 'Super Rare' ? 'selected' : '' %>>Super Rare</option>
+                    <option value="Secret Rare" <%= typeof card !== 'undefined' && card.rarity === 'Secret Rare' ? 'selected' : '' %>>Secret Rare</option>
+                </select>
+            </div>
+            <div>
+                <label for="image_url">Image URL</label>
+                <input type="text" id="image_url" name="image_url" value="<%= typeof card !== 'undefined' ? card.image_url : '' %>">
+            </div>
+            <div>
+                <label for="arc_id">Arc ID</label>
+                <input type="number" id="arc_id" name="arc_id" value="<%= typeof card !== 'undefined' ? card.arc_id : '' %>">
+            </div>
+            <div>
+                <label for="card_type_id">Card Type ID</label>
+                <input type="number" id="card_type_id" name="card_type_id" value="<%= typeof card !== 'undefined' ? card.card_type_id : '' %>">
+            </div>
             <input type="submit" value="<%= typeof card !== 'undefined' ? 'Update Card' : 'Add Card' %>">
         </form>
     </div>
