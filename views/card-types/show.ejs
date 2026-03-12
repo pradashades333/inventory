@@ -3,13 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Card Types</title>
+    <title><%= cardType.name %></title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: #1a1a2e;
+            min-height: 100vh;
+            padding: 40px 20px;
+            color: #f5e6c8;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            letter-spacing: 0.05em;
+            margin-bottom: 12px;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+        }
+
+        p {
+            color: rgba(245, 230, 200, 0.7);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+
+        a {
+            color: #f5e6c8;
+            text-decoration: none;
+            font-size: 0.85rem;
+            opacity: 0.55;
+            transition: opacity 0.2s;
+        }
+
+        a:hover {
+            opacity: 1;
+        }
+    </style>
 </head>
 <body>
-    <div>
+    <a href="/card-types">← Back to card types</a>
+    <div style="margin-top: 24px;">
         <h1><%= cardType.name %></h1>
         <p><%= cardType.description %></p>
-        <a href = "/card-types"> Back to card types</a>
     </div>
 </body>
 </html>
