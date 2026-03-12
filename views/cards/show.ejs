@@ -3,18 +3,135 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cards</title>
+    <title><%= card.name %></title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: #1a1a2e;
+            min-height: 100vh;
+            padding: 40px 20px;
+            color: #f5e6c8;
+        }
+
+        a {
+            color: #f5e6c8;
+            text-decoration: none;
+            font-size: 0.85rem;
+            opacity: 0.55;
+            transition: opacity 0.2s;
+        }
+
+        a:hover {
+            opacity: 1;
+        }
+
+        .card-layout {
+            display: flex;
+            gap: 36px;
+            margin-top: 28px;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .card-image {
+            width: 220px;
+            flex-shrink: 0;
+            border-radius: 8px;
+            border: 1px solid rgba(245, 230, 200, 0.15);
+            filter: drop-shadow(0 4px 16px rgba(0,0,0,0.5));
+        }
+
+        .card-info {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .card-info h1 {
+            font-size: 1.7rem;
+            letter-spacing: 0.04em;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+        }
+
+        .card-detail {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .detail-row {
+            display: flex;
+            gap: 12px;
+            align-items: baseline;
+            border-bottom: 1px solid rgba(245, 230, 200, 0.07);
+            padding-bottom: 10px;
+        }
+
+        .detail-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            opacity: 0.45;
+            width: 90px;
+            flex-shrink: 0;
+        }
+
+        .detail-value {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        .description-block {
+            margin-top: 20px;
+        }
+
+        .description-block .detail-label {
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .description-block p {
+            font-size: 0.9rem;
+            line-height: 1.65;
+            opacity: 0.7;
+        }
+    </style>
 </head>
 <body>
-    <div>
-        <h1><%= card.name %></h1>
-        <p><%= card.card_number %></p>
-        <p><%= card.price %></p>
-        <p><%= card.rarity %></p>
-        <p><%= card.stock %></p>
-        <p><%= card.description %></p>
-        <img src="<%= card.image_url %>">
-        <a href = "/cards"> Back to cards</a>
+    <a href="/cards">← Back to cards</a>
+    <div class="card-layout">
+        <img class="card-image" src="<%= card.image_url %>" alt="<%= card.name %>">
+        <div class="card-info">
+            <h1><%= card.name %></h1>
+            <div class="card-detail">
+                <div class="detail-row">
+                    <span class="detail-label">Card No.</span>
+                    <span class="detail-value"><%= card.card_number %></span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Price</span>
+                    <span class="detail-value"><%= card.price %></span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Rarity</span>
+                    <span class="detail-value"><%= card.rarity %></span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Stock</span>
+                    <span class="detail-value"><%= card.stock %></span>
+                </div>
+            </div>
+            <div class="description-block">
+                <span class="detail-label">Description</span>
+                <p><%= card.description %></p>
+            </div>
+        </div>
     </div>
 </body>
 </html>
