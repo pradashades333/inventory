@@ -5,58 +5,128 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arcs</title>
     <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            padding: 20px;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: #1a1a2e;
+            min-height: 100vh;
+            padding: 40px 20px;
+            color: #f5e6c8;
         }
 
         h1 {
-            color: #333;
+            font-size: 1.8rem;
+            letter-spacing: 0.05em;
+            margin-bottom: 28px;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.4);
         }
 
         .arc-card {
-            background-color: white;
-            border: 1px solid #ccc;
-            padding: 15px;
-            margin-bottom: 15px;
-            border-radius: 5px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(245, 230, 200, 0.15);
+            border-radius: 6px;
+            padding: 16px 20px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
         }
 
-        .arc-card p {
-            margin: 5px 0;
+        .arc-info {
+            flex: 1;
+        }
+
+        .arc-info strong {
+            font-size: 1rem;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .arc-info p {
+            font-size: 0.875rem;
+            color: rgba(245, 230, 200, 0.65);
+        }
+
+        .arc-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
         }
 
         button {
-            background-color: red;
-            color: white;
-            border: none;
-            padding: 5px 10px;
+            background: transparent;
+            color: #e06c6c;
+            border: 1px solid rgba(224, 108, 108, 0.4);
+            padding: 6px 14px;
+            border-radius: 4px;
             cursor: pointer;
+            font-size: 0.85rem;
+            transition: background 0.2s, border-color 0.2s;
+        }
+
+        button:hover {
+            background: rgba(224, 108, 108, 0.15);
+            border-color: #e06c6c;
         }
 
         a {
-            color: blue;
-            margin-left: 10px;
+            color: #f5e6c8;
+            text-decoration: none;
+            font-size: 0.85rem;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+
+        a:hover {
+            opacity: 1;
         }
 
         .add-link {
-            display: block;
+            display: inline-block;
             margin-top: 20px;
+            font-size: 0.9rem;
+            opacity: 0.6;
+        }
+
+        .add-link:hover {
+            opacity: 1;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            opacity: 0.5;
+        }
+
+        .back-link:hover {
+            opacity: 1;
         }
     </style>
 </head>
 <body>
+    <a href="/" class="back-link">← Home</a>
     <h1>One Piece Arcs</h1>
     <div>
         <% arcs.forEach(arc => { %>
             <div class="arc-card">
-                <p><strong><%= arc.name %></strong></p>
-                <p><%= arc.description %></p>
-                <form action="/arcs/<%= arc.id %>/delete" method="POST" style="display:inline;">
-                    <button type="submit">Delete</button>
-                </form>
-                <a href="/arcs/<%= arc.id %>/edit">Edit</a>
+                <div class="arc-info">
+                    <strong><%= arc.name %></strong>
+                    <p><%= arc.description %></p>
+                </div>
+                <div class="arc-actions">
+                    <a href="/arcs/<%= arc.id %>/edit">Edit</a>
+                    <form action="/arcs/<%= arc.id %>/delete" method="POST" style="display:inline;">
+                        <button type="submit">Delete</button>
+                    </form>
+                </div>
             </div>
         <% }) %>
 
