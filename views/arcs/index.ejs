@@ -109,10 +109,42 @@
         .back-link:hover {
             opacity: 1;
         }
+
+        nav {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 28px;
+        }
+
+        nav a {
+            padding: 7px 16px;
+            border: 1px solid rgba(245, 230, 200, 0.2);
+            border-radius: 5px;
+            font-size: 0.82rem;
+            opacity: 0.55;
+            background: rgba(255,255,255,0.04);
+        }
+
+        nav a:hover {
+            opacity: 1;
+            background: rgba(245, 230, 200, 0.1);
+            border-color: rgba(245, 230, 200, 0.45);
+        }
+
+        nav a.active {
+            opacity: 1;
+            border-color: rgba(245, 230, 200, 0.5);
+            background: rgba(245, 230, 200, 0.08);
+        }
     </style>
 </head>
 <body>
     <a href="/" class="back-link">← Home</a>
+    <nav>
+        <a href="/arcs" class="active">Arcs</a>
+        <a href="/cards">Cards</a>
+        <a href="/card-types">Card Types</a>
+    </nav>
     <h1>One Piece Arcs</h1>
     <div>
         <% arcs.forEach(arc => { %>
